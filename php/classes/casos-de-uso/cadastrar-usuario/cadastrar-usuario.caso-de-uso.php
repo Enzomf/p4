@@ -1,8 +1,8 @@
 <?php
 
-include_once '../../repositorios';
-include_once '../../serviços';
-include_once '../../entidades';
+include_once '../../repositorios/index.php';
+include_once '../../serviços/index.php';
+include_once '../../entidades/index.php';
 
 
 class CadastrarUsuarioCasoDeUso
@@ -13,7 +13,7 @@ class CadastrarUsuarioCasoDeUso
 
     public function __construct(
         UsuarioRepo $usuarioRepo,
-        HashService $hashService,
+        HashService $hashService
     ) {
         $this->usuarioRepo = $usuarioRepo;
         $this->hashService = $hashService;
@@ -23,6 +23,12 @@ class CadastrarUsuarioCasoDeUso
     {
         $hashSenha = $this->hashService->hash($senha);
 
+        $emailJaCadastrado = $this->usuarioRepo->buscarPorEmail($email);
+
+        if (!empty($emailJaCadastrado)) {
+            echo 'e-mail já cadastrado';
+            return;
+        }
 
         $usuario = new Usuario($nome, $email, $hashSenha);
 
