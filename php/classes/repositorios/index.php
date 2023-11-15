@@ -1,3 +1,3 @@
 <?php
-    require_once './clsUsuarioRepo.php';
+require_once 'clsUsuarioRepo.php';
 ?>
