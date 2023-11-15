@@ -1,26 +1,29 @@
 <?php
-    class HashService { 
+class HashService
+{
 
-        private $hashOptions = [
-            'cost' => 12,
-        ];
+    private $hashOptions = [
+        'cost' => 12,
+    ];
 
-        public function hash($senha)  { 
+    public function hash($senha)
+    {
 
-            $hashSenha = password_hash($senha, PASSWORD_BCRYPT, $hashOptions);
+        $hashSenha = password_hash($senha, PASSWORD_BCRYPT, $this->hashOptions);
 
-            return $hashSenha;
-        }
+        return $hashSenha;
+    }
 
-        public function verificarSenha($senha, $hashSenha) { 
-            
-            $isHashValido = password_verify($senha, $hashSenha);
+    public function verificarSenha($senha, $hashSenha)
+    {
 
-            return $isHashValido;
+        $isHashValido = password_verify($senha, $hashSenha);
 
-        }
-
+        return $isHashValido;
 
     }
+
+
+}
 
 ?>
