@@ -17,13 +17,32 @@ class CadastrarUsuarioController
         $senha = $_POST['senha'];
         $confirmacaoSenha = $_POST['confirmacaoSenha'];
 
+        if (!$nome) {
+            echo ('O nome é obrigatório');
+            return;
+        }
+        if (!$email) {
+            echo ('O e-mail é obrigatório');
+            return;
+        }
+
+        if (!$senha) {
+            echo ('A senha é obrigatória');
+            return;
+        }
+        if (!$confirmacaoSenha) {
+            echo ('A confirmação da senha é obrigatória');
+            return;
+        }
+
+
         if ($senha !== $confirmacaoSenha) {
 
             throw new Error('As senhas não conferem');
         }
 
         $this->cadastrarUsuarioCasoDeUso->execute($nome, $email, $senha);
-        ;
+
     }
 }
 
