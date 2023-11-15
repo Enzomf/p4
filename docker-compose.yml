@@ -2,8 +2,22 @@ version: "3.8"
 
 services:
   php:
-    image: php:7.4-apache
+    build: .
     volumes:
       - .:/var/www/html
     ports:
       - "80:80"
+
+    depends_on:
+      - db
+  db:
+    image: mysql:latest
+    volumes:
+      - p4_db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=p4
+      - MYSQL_DATABASE=p4
+      - MYSQL_USER=p4
+
+volumes:
+  p4_db_data: {}
