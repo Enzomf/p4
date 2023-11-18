@@ -20,17 +20,26 @@
         <h2 class="titulo">Usuários cadastrados</h2>
         <ul class="lista">
           <li>
-            <div class="usuarios">
-              <div>
-                <h3>Nome</h3>
-                <p>nome dos usuarios</p>
-              </div>
-              <div>
-                <h3>Email</h3>
-                <p>felipe@gmail.com</p>
-              </div>
-              <div>
-                <button class="X">Deletar</button>
+            <?php
+
+            include_once './php/classes/casos-de-uso/listar-usuarios/index.php';
+
+            $listarUsuariosUseCase = getListarUsuariosUsCaseInstance();
+            $listaUsuarios = $listarUsuariosUseCase->execute();
+
+            foreach ($listaUsuarios as $usuario) {
+              echo '<li class="li_usuario">';
+
+              echo '<p> <span>Nome:</span>' . $usuario->nome;
+              echo '<p> <span>E-mail:</span>' . $usuario->email;
+
+              echo '</li>';
+            }
+
+
+            ?>
+             
+               
               </div>
             </div>
           </li>

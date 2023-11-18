@@ -11,9 +11,16 @@ class UsuarioRepo
 
     public function listarTodos()
     {
-        $sql = "SELECT * FROM usuarios";
+
+
+        $sql = "SELECT nome, email, id FROM usuarios";
         $resultado = $this->conexao->query($sql);
-        return $resultado->fetchAll(PDO::FETCH_ASSOC);
+        $usuarios = [];
+        while ($usuario = $resultado->fetch_object()) {
+            $usuarios[] = $usuario;
+        }
+        return $usuarios;
+
     }
 
     public function buscarPorId($id)

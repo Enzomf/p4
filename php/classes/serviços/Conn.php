@@ -3,7 +3,7 @@ class Conn
 {
     private static $instance = null;
     private $host = "db";
-    private $user = "p4";
+    private $user = "root";
     private $password = "p4";
     private $database = "p4";
     private $conn;

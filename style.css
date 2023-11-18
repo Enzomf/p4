@@ -1,3 +1,7 @@
+.li_usuario {
+  display: flex;
+  flex-direction: column;
+}
 body {
   margin: 0;
   padding: 0;

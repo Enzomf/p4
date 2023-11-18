@@ -18,6 +18,7 @@ services:
       - MYSQL_ROOT_PASSWORD=p4
       - MYSQL_DATABASE=p4
       - MYSQL_USER=p4
+      - MYSQL_PASSWORD=p4
 
 volumes:
   p4_db_data: {}

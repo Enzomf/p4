@@ -34,6 +34,8 @@ class CadastrarUsuarioCasoDeUso
 
         $this->usuarioRepo->inserir($usuario);
 
+        header('Location: /users');
+
     }
 
 

@@ -38,7 +38,8 @@ class CadastrarUsuarioController
 
         if ($senha !== $confirmacaoSenha) {
 
-            throw new Error('As senhas não conferem');
+            echo ('As senhas não conferem');
+            return;
         }
 
         $this->cadastrarUsuarioCasoDeUso->execute($nome, $email, $senha);
