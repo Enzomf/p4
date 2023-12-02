@@ -3,13 +3,13 @@
 require_once '../../repositorios/UsuarioRepo.php';
 require_once '../../servicos/Hash.php';
 require_once '../../servicos/DB.php';
+require_once './cadastro-usuario.caso-de-uso.php';
+require_once './cadastro-usuario.controller.php';
+
+$dbService = new DBService();
 
 
-use Repositorios\UsuarioRepo;
-use Servicos\HashService;
-
-
-$usuarioRepo = new UsuarioRepo($conexao);
+$usuarioRepo = new UsuarioRepo($dbService->getConn());
 $hashService = new HashService();
 
 $cadastroUsuarioUseCase = new CadastroUsuarioCasoDeUso($hashService, $usuarioRepo);
@@ -17,5 +17,3 @@ $cadastroUsuarioUseCase = new CadastroUsuarioCasoDeUso($hashService, $usuarioRep
 $cadastroUsuarioController = new CadastroUsuarioController($cadastroUsuarioUseCase);
 
 $cadastroUsuarioController->handle();
-
-?>

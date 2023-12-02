@@ -1,9 +1,6 @@
 <?php
 
-namespace Repositorios;
-
-use PDO;
-use Entidades\Usuario;
+require_once __DIR__ . '/../entidades/Usuario.php';
 
 class UsuarioRepo
 {
@@ -25,9 +22,10 @@ class UsuarioRepo
 
         $stmt->execute();
 
+
         $resultado = $stmt->fetch();
 
-        if (!empty($resultado)) {
+        if ($resultado === false) {
             return null;
         }
 
@@ -36,15 +34,9 @@ class UsuarioRepo
             $resultado->nome,
             null,
             $resultado->email,
-            null
         );
 
         return $usuario;
-
-
-
-
-
     }
 
     public function create(Usuario $usuario): void
@@ -63,12 +55,5 @@ class UsuarioRepo
 
 
         $stmt->execute();
-
     }
-
-
-
-
 }
-
-?>

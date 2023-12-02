@@ -1,8 +1,6 @@
 <?php
 
-namespace Entidades;
-
-use Entidades\Usuario;
+require_once './Usuario.php';
 
 class Registro
 {
@@ -79,8 +77,4 @@ class Registro
     {
         return $this->created_at;
     }
-
-
-
 }
-?>

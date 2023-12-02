@@ -1,16 +1,18 @@
 <?php
 
-use Servicos\HashService;
-use Repositorios\UsuarioRepo;
-use Entidades\Usuario;
+require_once '../../repositorios/UsuarioRepo.php';
+require_once '../../servicos/Hash.php';
 
 class CadastroUsuarioCasoDeUso
 {
 
-    public function __construct(
-        private HashService $hashService,
-        private UsuarioRepo $usuarioRepo
-    ) {
+    private $hashService;
+    private $usuarioRepo;
+
+    public function __construct(HashService $hashService, UsuarioRepo $usuarioRepo)
+    {
+        $this->hashService = $hashService;
+        $this->usuarioRepo = $usuarioRepo;
     }
 
     public function execute($nome, $senha, $email)
@@ -22,10 +24,9 @@ class CadastroUsuarioCasoDeUso
         $usuarioExiste = $this->usuarioRepo->findByEmail($email);
 
         if ($usuarioExiste !== null) {
-            echo 'E-mail já cadastrado';
+            header("Location: /cadastro.php?error=E-mail já cadastrado");
             return;
-        }
-        ;
+        };
 
         $usuario = new Usuario(
             null,
@@ -36,11 +37,5 @@ class CadastroUsuarioCasoDeUso
 
 
         $this->usuarioRepo->create($usuario);
-
-
-
-
     }
 }
-
-?>

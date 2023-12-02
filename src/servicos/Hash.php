@@ -1,8 +1,6 @@
 <?php
 
 
-namespace Servicos;
-
 class HashService
 {
 
@@ -24,10 +22,5 @@ class HashService
         $isHashValido = password_verify($senha, $hashSenha);
 
         return $isHashValido;
-
     }
-
-
 }
-
-?>

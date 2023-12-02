@@ -1,23 +1,53 @@
 <?php
-$dsn = 'mysql:host=db;dbname=p4';
-$usuario = 'p4';
-$senha = 'p4';
-$conexao;
-
-try {
-    $conexao = new PDO($dsn, $usuario, $senha);
-
-    $sqlFolderBasePath = '../sql';
-
-    $queryCreateTableUsuarios = file_get_contents("$sqlFolderBasePath/tabela-usuarios.sql");
-    $queryCreateTableRegistros = file_get_contents("$sqlFolderBasePath/tabela-registros.sql");
 
 
-    $conexao->exec($queryCreateTableUsuarios);
-    $conexao->exec($queryCreateTableRegistros);
+
+class DBService
+{
 
 
-} catch (PDOException $e) {
-    print_r($e->errorInfo);
+    private PDO $conexao;
+    private $usuario = 'root';
+    private $senha = 'p4';
+    private $dsn = 'mysql:host=db;dbname=p4';
+
+    private $sqlFolderBasePath = __DIR__ . '/../sql';
+
+
+    public function __construct()
+    {
+        try {
+
+            $this->connect();
+            $this->createTables();
+        } catch (PDOException $e) {
+            print_r('Erro ao realizar a conexão com o banco de dados');
+            print_r($e);
+        }
+    }
+
+    public function getConn()
+    {
+        return $this->conexao;
+    }
+
+    private function connect()
+    {
+        $this->conexao = new PDO($this->dsn, $this->usuario, $this->senha);
+    }
+
+    private function createTables()
+    {
+        $queryCreateTableUsuarios = file_get_contents($this->sqlFolderBasePath . "/tabela-usuarios.sql");
+        $queryCreateTableRegistros = file_get_contents($this->sqlFolderBasePath . "/tabela-registros.sql");
+
+
+        $this->conexao->exec($queryCreateTableUsuarios);
+        $this->conexao->exec($queryCreateTableRegistros);
+    }
+
+    public function __destruct()
+    {
+        $this->conexao = null;
+    }
 }
-?>  

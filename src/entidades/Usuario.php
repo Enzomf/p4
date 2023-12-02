@@ -1,63 +1,57 @@
 <?php
 
-namespace Entidades;
 
 class Usuario
 {
 
-    private int $id;
-    private string $nome;
-    private string $senha;
-    private string $email;
+    private  $id;
+    private  $nome;
+    private  $senha;
+    private  $email;
 
     private array $registros;
 
-    public function __construct(int $id = null, string $nome = null, string $senha = null, string $email = null, array $registros = null)
+    public function __construct($id = null,  $nome = null,  $senha = null,  $email = null, array $registros = array())
     {
         $this->id = $id;
         $this->nome = $nome;
         $this->senha = $senha;
         $this->email = $email;
         $this->registros = $registros;
-
     }
 
 
 
 
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
-    public function getNome(): string
+    public function getNome()
     {
         return $this->nome;
     }
-    public function getSenha(): string
+    public function getSenha()
     {
         return $this->senha;
     }
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->email;
     }
 
-    public function setNome(string $nome)
+    public function setNome($nome)
     {
         $this->nome = $nome;
     }
 
-    public function setSenha(string $senha)
+    public function setSenha($senha)
     {
         $this->senha = $senha;
     }
 
-    public function setEmail(string $email)
+    public function setEmail($email)
     {
         $this->email = $email;
     }
-
-
 }
-
-?>
