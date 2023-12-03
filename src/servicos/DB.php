@@ -6,10 +6,10 @@ class DBService
 {
 
 
-    private PDO $conexao;
+    private  $conexao;
     private $usuario = 'root';
-    private $senha = 'p4';
-    private $dsn = 'mysql:host=db;dbname=p4';
+    private $senha = '';
+    private $dsn = 'mysql:host=localhost;dbname=p4';
 
     private $sqlFolderBasePath = __DIR__ . '/../sql';
 

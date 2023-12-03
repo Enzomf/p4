@@ -2,6 +2,8 @@
 
 require_once '../../repositorios/UsuarioRepo.php';
 require_once '../../servicos/Hash.php';
+require_once '../../constants.php';
+
 
 class CadastroUsuarioCasoDeUso
 {
@@ -24,7 +26,7 @@ class CadastroUsuarioCasoDeUso
         $usuarioExiste = $this->usuarioRepo->findByEmail($email);
 
         if ($usuarioExiste !== null) {
-            header("Location: /cadastro.php?error=E-mail já cadastrado");
+            header("Location: " . ROOT_PATH . "/cadastro.php?error=E-mail já cadastrado");
             return;
         };
 
@@ -37,5 +39,8 @@ class CadastroUsuarioCasoDeUso
 
 
         $this->usuarioRepo->create($usuario);
+
+
+        header("Location:" . ROOT_PATH . "\login.php");
     }
 }

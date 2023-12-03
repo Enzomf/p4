@@ -4,6 +4,8 @@
 }
 
 
+
+
 body {
   margin: 0;
   padding: 0;
@@ -59,8 +61,7 @@ input {
 }
 
 /* Formulário das páginas de autenticação */
-
-#auth-form {
+form {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -90,6 +91,13 @@ input {
   color: red;
 }
 
+
+
+
+
+
+
+
 img {
   width: 150px;
   position: absolute;
@@ -99,8 +107,75 @@ img {
 }
 
 
+/* Pagina usuarios */
 
+#usuarios {
+  width: 60%;
+  margin: 0 auto;
+}
 
+/* Lista usuarios */
+
+.lista-usuarios {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lista-usuarios__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.lista-usuarios--item__info span:first-child {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.lista-usuarios--item__info span:last-child {
+  opacity: 0.9;
+}
+
+.lista-usuarios--item__actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.lista-usuarios--item__actions button {
+  cursor: pointer;
+  transition: all .5s;
+  border-radius: 5px;
+
+}
+
+.lista-usuarios--item__actions--remover__btn {
+  background-color: red;
+  color: #FFFF;
+  border: 1px solid red;
+
+}
+
+.lista-usuarios--item__actions--remover__btn:hover {
+  background-color: transparent;
+  color: red;
+}
+
+.lista-usuarios--item__actions--editar__btn {
+  background-color: blue;
+  color: #FFFF;
+  border: 1px solid blue;
+}
+
+.lista-usuarios--item__actions--editar__btn:hover {
+  background-color: transparent;
+  color: blue;
+}
 
 
 .login {
@@ -116,16 +191,20 @@ img {
   transform: scale(0.8);
 }
 
-#chk:checked~.login {
-  transform: translateY(-560px);
-}
+#modal-usuario {
 
-#chk:checked~.login label {
-  transform: scale(1);
-}
+  position: absolute;
+  border: 1px solid #c1c1c1;
+  top: 50%;
+  background-color: var(--background);
+  padding: 15px;
+  border-radius: 5px;
+  width: 350px;
+  box-shadow: 3px 3px 3px var(--primary);
 
-#chk:checked~.signup label {
-  transform: scale(0.6);
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 }
 
 .titulo {
@@ -136,41 +215,10 @@ img {
   font-size: 26px;
 }
 
-.container {
-  margin: auto;
-  height: 500px;
-  width: 550px;
-  border: 1px solid #000;
-  border-radius: 20px;
-  box-shadow: 5px 20px 50px #000;
-}
+
 
 h3 {
   color: #573b8a;
   font-weight: 900;
   font-size: 26px;
-}
-
-.lista {
-  list-style-type: none;
-}
-
-.usuarios {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  font-size: 18px;
-}
-
-.X {
-  cursor: pointer;
-  width: 80px;
-  height: 25px;
-  margin-top: 4.5rem;
-}
-
-.X:hover {
-  background-color: #fff;
-  color: #6d44b8;
 }

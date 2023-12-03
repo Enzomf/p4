@@ -11,13 +11,13 @@ class Usuario
 
     private array $registros;
 
-    public function __construct($id = null,  $nome = null,  $senha = null,  $email = null, array $registros = array())
+    public function __construct($id,  $nome,  $senha,  $email)
+
     {
         $this->id = $id;
         $this->nome = $nome;
         $this->senha = $senha;
         $this->email = $email;
-        $this->registros = $registros;
     }
 
 

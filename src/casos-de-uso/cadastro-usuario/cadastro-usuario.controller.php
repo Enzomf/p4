@@ -1,6 +1,8 @@
 <?php
 
 require_once './cadastro-usuario.caso-de-uso.php';
+require_once '../../constants.php';
+
 class CadastroUsuarioController
 {
     private $cadastroUsuarioCasoDeUso;
@@ -17,19 +19,12 @@ class CadastroUsuarioController
         $nome = $_POST['nome'];
 
 
-        if (!isset($email) || !isset($senha) || !isset($nome) || !isset($confirmacaoSenha)) {
-            header("Location: /cadatro.php?error=Dados Incompletos");
-            return;
-        }
-
         if ($senha !== $confirmacaoSenha) {
-            echo "As senhas não conferem";
+            header("Location:" . ROOT_PATH . "/cadastro.php?error=As senhas não conferem");
             return;
         }
 
 
-        $this->cadastroUsuarioCasoDeUso->execute($nome, $email, $senha);
-
-        echo "Usuario cadastrado com sucesso";
+        $this->cadastroUsuarioCasoDeUso->execute($nome, $senha, $email);
     }
 }
