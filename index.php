@@ -45,7 +45,6 @@ if ($action === 'logout') {
 <script>
     const url = new URL(location.href);
 
-    console.log(url)
 
     function removerUsuario(idUsuario) {
         url.searchParams.set('action', 'remover');
@@ -55,7 +54,7 @@ if ($action === 'logout') {
     }
 
     function handleModalClose() {
-        window.location.href = '/p4/usuarios.php'
+        window.location.href = '/p4/index.php'
     }
 
     function handleModalOpen(idUsuario) {
@@ -82,7 +81,24 @@ if ($action === 'logout') {
         <img src="https://images.even3.com.br/c1uz7AUsJZb735Q69CeyuTlRtD8=/fit-in/250x250/smart/even3.blob.core.windows.net/logos/logo2.a5ea37833ee949f08abf.png" alt="logo" />
     </header>
     <main id="usuarios">
+
         <h2 class="titulo">Seja bem-vindo, <?php echo $_SESSION['nome']; ?></h2>
+        <nav>
+            <h4>MENU</h4>
+            <ul>
+                <li>
+                    <a href="./index.php">
+                        USUARIOS
+                    </a>
+                </li>
+                <li>
+                    <a href="./lista-registros.php">
+                        REGISTROS
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
         <div id="actions">
             <button onclick="handleAdicionarUsuario()">Adicionar</button>
             <button onclick="handleLogOut()">
@@ -130,9 +146,13 @@ if ($action === 'logout') {
 
     ?>
         <div id="modal-usuario">
-            <h4>
-                Editar Usuario
-            </h4>
+            <div class="modal-usuario__actions">
+                <h4>
+                    Editar Usuario
+                </h4>
+
+                <button onclick="handleModalClose()">fechar</button>
+            </div>
 
             <form action="./src/casos-de-uso/edicao-usuario/index.php" method="POST">
                 <div class="form-control">

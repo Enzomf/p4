@@ -207,6 +207,12 @@ img {
 
 }
 
+.modal-usuario__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .titulo {
   margin: 2rem;
   color: #573b8a;

@@ -1,3 +1,13 @@
+<?php
+require './src/functions/validaLogin.php';
+validaLogin()
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -13,22 +23,22 @@
     <main>
         <div class="cadastro">
             <h1>Cadastro</h1>
-            <form id="auth-form" method="post" action="./src/casos-de-uso/cadastro-usuario/index.php">
+            <form id="auth-form" method="post" action="./src/casos-de-uso/cadastro-registro/index.php">
                 <div class="form-control">
                     <label class="form-control__label">Nome</label>
-                    <input type="text" name="nome" id="nome" placeholder="insira seu nome" required />
+                    <input type="text" name="nome" id="nome" placeholder="insira o telefone" required />
                 </div>
                 <div class="form-control">
-                    <label class="form-control__label">E-mail </label>
-                    <input type="email" id="email" name="email" placeholder="insira seu e-mail" required />
+                    <label class="form-control__label">Telefone </label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="insira o telefone" required />
                 </div>
                 <div class="form-control">
-                    <label class="form-control__label">Senha </label>
-                    <input type="password" name="senha" id="senha" placeholder="insira sua senha" required />
+                    <label class="form-control__label">Deficiencia </label>
+                    <input type="text" name="deficiencia" id="deficiencia" placeholder="insira a deficiencia" required />
                 </div>
                 <div class="form-control">
-                    <label class="form-control__label">Confirmação de senha </label>
-                    <input type="password" name="confirmacaoSenha" id="confirmacaoSenha" placeholder="confirme sua senha" required />
+                    <label class="form-control__label">Data de nascimento </label>
+                    <input type="date" name="data_nascimento" id="data_nascimento" placeholder="insira a data de nascimento" required />
                 </div>
                 <?php
                 if (isset($_GET['error'])) {
@@ -39,8 +49,7 @@
                     </div>
                 <?php } ?>
                 <div class="form-actions">
-                    <div>Já possui uma conta ? <a href="./login.php">clique aqui</a></div>
-                    <a href="./index.php">ir para a lista de usuarios</a>
+                    <div> <a href="./lista-registros.php">Voltar para a listagem de registros</a></div>
                 </div>
                 <button class="primary-btn" type="submit">Cadastrar</button>
             </form>
