@@ -89,7 +89,7 @@ class RegistroRepo
 
     public function update($id, $nome, $telefone, $deficiencia, $data_nascimento)
     {
-        $query = 'UPDATE USUARIOS SET nome=:nome, telefone=:telefone, deficiencia=:deficiencia, data_nascimento=:data_nascimento WHERE id=:id';
+        $query = 'UPDATE REGISTROS SET nome=:nome, telefone=:telefone, deficiencia=:deficiencia, data_nascimento=:data_nascimento WHERE id=:id';
         $stmt = $this->conn->prepare($query);
 
         $stmt->bindParam(':nome', $nome);

@@ -12,6 +12,19 @@ $registroRepo = new RegistroRepo($dbService->getConn());
 
 $registros = $registroRepo->findAll();
 
+$idRegistro = isset($_GET['idRegistro']) ? $_GET['idRegistro'] : null;
+$action = isset($_GET['action']) ? $_GET['action'] : null;
+
+
+if (isset($idRegistro) && $action === 'remover') {
+    $registroRepo->delete($idRegistro);
+    header('Location: /p4/lista-registros.php');
+}
+
+if ($action === 'logout') {
+    session_destroy();
+    header('Location: /p4/login.php');
+}
 
 ?>
 
@@ -26,7 +39,39 @@ $registros = $registroRepo->findAll();
     <title>Usuarios</title>
     <link rel="stylesheet" type="text/css" href="./assets/style.css" />
 </head>
+<script>
+    const url = new URL(location.href);
 
+
+    function removerUsuario(idUsuario) {
+        url.searchParams.set('action', 'remover');
+        url.searchParams.set('idRegistro', idUsuario);
+
+        location.assign(url);
+    }
+
+    function handleModalClose() {
+        window.location.href = '/p4/lista-registros.php'
+    }
+
+    function handleModalOpen(idRegistro) {
+        url.searchParams.set('action', 'editar');
+        url.searchParams.set('idRegistro', idRegistro);
+
+        location.assign(url);
+    }
+
+    function handleAdicionarUsuario() {
+        window.location.href = '/p4/adicionar-registro.php';
+    }
+
+    function handleLogOut() {
+        url.searchParams.set('action', 'logout');
+        location.assign(url);
+
+
+    }
+</script>
 
 <body>
     <header class="logo">
@@ -58,7 +103,7 @@ $registros = $registroRepo->findAll();
                     Adicionar
                 </button>
             </a>
-            <button>
+            <button onclick="handleLogOut()">
                 sair
             </button>
         </div>
@@ -79,14 +124,16 @@ $registros = $registroRepo->findAll();
                     </div>
 
                     <div class="lista-usuarios--item__actions">
-                        <button onclick="removerUsuario(<?php echo $usuario->getId(); ?>)" class="lista-usuarios--item__actions--remover__btn">
+                        <button onclick="removerUsuario(<?php echo $registro->getId(); ?>)" class="lista-usuarios--item__actions--remover__btn">
                             remover
                         </button>
-                        <button onclick="handleModalOpen(<?php echo $usuario->getId(); ?>)" class="lista-usuarios--item__actions--editar__btn">
+                        <button onclick="handleModalOpen(<?php echo $registro->getId(); ?>)" class="lista-usuarios--item__actions--editar__btn">
                             editar
                         </button>
                     </div>
                 </li>
+
+
 
             <?php  } ?>
 
@@ -95,6 +142,58 @@ $registros = $registroRepo->findAll();
     </main>
     </form>
     </div>
+
+    <?php if ($idRegistro && $action === 'editar') {
+
+
+        $registroAserEditado = $registroRepo->findById($idRegistro);
+
+
+
+    ?>
+        <div id="modal-usuario">
+            <div class="modal-usuario__actions">
+                <h4>
+                    Editar Registro
+                </h4>
+
+                <button onclick="handleModalClose()">fechar</button>
+            </div>
+
+            <form action="./src/casos-de-uso/edicao-registro/index.php" method="POST">
+                <div class="form-control">
+                    <label class="form-label">
+                        Nome:
+                    </label>
+                    <input value="<?php echo $registroAserEditado->getNome(); ?>" name="nome" id="nome" />
+                </div>
+                <div class="form-control">
+
+                    <label class="form-label">
+                        Telefone:
+                    </label>
+                    <input value="<?php echo $registroAserEditado->getTelefone(); ?>" name="telefone" id="telefone" />
+                </div>
+                <div class="form-control">
+
+                    <label class="form-label">
+                        Deficiencia':
+                    </label>
+                    <input value="<?php echo $registroAserEditado->getDeficiencia(); ?>" name="deficiencia" id="deficiencia" />
+                </div>
+                <div class="form-control">
+
+                    <label class="form-label">
+                        Deficiencia':
+                    </label>
+                    <input type="date" value="<?php echo $registroAserEditado->getDataNascimento(); ?>" name="data_nascimento" id="data_nascimento" />
+                </div>
+
+                <input type="hidden" name="id" id="id" value="<?php echo $idRegistro; ?>" />
+                <button type="submit">Salvar</button>
+
+        </div>
+    <?php } ?>
 </body>
 
 </html>
